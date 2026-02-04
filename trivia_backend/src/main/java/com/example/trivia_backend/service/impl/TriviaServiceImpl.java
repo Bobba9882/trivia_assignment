@@ -10,6 +10,7 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
 
+import java.io.Console;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
@@ -127,6 +128,7 @@ public class TriviaServiceImpl implements TriviaService {
 
         //remove cache if all questions answered
         if (submittedCount >= session.getCorrectAnswerByQuestionId().size()){
+            System.out.println("evicting cache for sessionId: " + request.getSessionId());
             triviaSessionsCache.evict(request.getSessionId());
         }
         return CheckAnswersResponseDto.builder()
