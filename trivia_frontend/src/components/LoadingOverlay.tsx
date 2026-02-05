@@ -1,3 +1,6 @@
+/**
+ * LoadingOverlay - Full-screen overlay with spinner for async operations.
+ */
 export function LoadingOverlay({ label }: { label?: string }) {
     return (
         <div

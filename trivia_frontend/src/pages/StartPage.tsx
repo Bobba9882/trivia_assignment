@@ -1,3 +1,7 @@
+/**
+ * StartPage - Quiz configuration screen where users select settings
+ * (amount, difficulty, type, category) before beginning the quiz.
+ */
 import {useState} from 'react';
 import type {GetQuestionsParams, QuestionsResponseDto} from '../types/trivia';
 import {getQuestions} from '../services/triviaService';

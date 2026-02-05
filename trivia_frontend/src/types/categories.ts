@@ -1,3 +1,8 @@
+/**
+ * Trivia category definitions matching the Open Trivia Database API.
+ * Used for category selection in quiz configuration.
+ */
+
 export interface TriviaCategory {
     id: number;
     name: string;

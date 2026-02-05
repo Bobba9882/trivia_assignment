@@ -1,3 +1,7 @@
+/**
+ * ResultsList - Renders detailed results for each question,
+ * showing user answers, correct answers, and pass/fail status.
+ */
 import type { CheckAnswersResponseDto, QuizState } from '../types/trivia';
 
 export function ResultsList({ quiz, result }: { quiz: QuizState; result: CheckAnswersResponseDto }) {

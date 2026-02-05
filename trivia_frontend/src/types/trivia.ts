@@ -38,6 +38,7 @@ export interface GetQuestionsParams {
 }
 
 
+/** Client-side state representing an active quiz session */
 export interface QuizState {
     sessionId: string;
     questions: QuestionDto[];

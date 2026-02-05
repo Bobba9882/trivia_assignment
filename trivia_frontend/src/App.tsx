@@ -1,3 +1,7 @@
+/**
+ * Root application component that manages navigation between trivia quiz views
+ * and maintains global state (quiz data, results, theme).
+ */
 import { useEffect, useMemo, useState } from 'react';
 import type {
     CheckAnswersResponseDto,
@@ -18,8 +22,10 @@ export default function App() {
     const [result, setResult] = useState<CheckAnswersResponseDto | null>(null);
     const [darkMode, setDarkMode] = useState(true);
 
+    // Default quiz parameters (memoized to prevent recreation)
     const initialParams = useMemo<GetQuestionsParams>(() => ({ amount: 10 }), []);
 
+    // Sync Bootstrap theme with darkMode state
     useEffect(() => {
         document.documentElement.setAttribute(
             'data-bs-theme',

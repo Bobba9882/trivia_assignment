@@ -1,3 +1,6 @@
+/**
+ * AnswerGrid - Grid layout for answer buttons with Kahoot-style color cycling.
+ */
 import { AnswerButton } from './AnswerButton';
 
 type Props = {
@@ -7,6 +10,7 @@ type Props = {
     onSelect: (answer: string) => void;
 };
 
+// Kahoot-inspired color pattern for answer buttons
 const kahootVariantCycle = ['danger', 'primary', 'warning', 'success'] as const;
 
 export function AnswerGrid({ type, answers, selectedAnswer, onSelect }: Props) {

@@ -1,3 +1,7 @@
+/**
+ * Service layer for communicating with the trivia backend API.
+ * Handles fetching questions and submitting answers.
+ */
 import type {
     CheckAnswersRequestDto,
     CheckAnswersResponseDto,
@@ -7,6 +11,10 @@ import type {
 
 const BASE_URL = 'http://localhost:8080';
 
+/**
+ * Parses response body and throws if response is not ok.
+ * Attempts to extract error message from JSON or text body.
+ */
 async function parseOrThrow(res: Response): Promise<any> {
     const contentType = res.headers.get('content-type') ?? '';
     const isJson = contentType.includes('application/json');

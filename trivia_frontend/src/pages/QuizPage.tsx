@@ -75,13 +75,17 @@ export function QuizPage({ quiz, onQuizChange, onFinish, onQuit }: Props) {
     }
 
 
+    /**
+     * Quit handler - submits all questions (even unanswered) to ensure
+     * the backend properly cleans up the session.
+     */
     async function quit() {
         if (submitting) return;
 
         setError(null);
         setSubmitting(true);
 
-        // Build a map containing ALL questionIds so backend evicts
+        // Build a map containing ALL questionIds so backend evicts session
         const answersByQuestionId: Record<string, string> = {};
         for (const question of quiz.questions) {
             answersByQuestionId[question.questionId] = quiz.answersByQuestionId[question.questionId] ?? '';
@@ -93,7 +97,7 @@ export function QuizPage({ quiz, onQuizChange, onFinish, onQuit }: Props) {
                 answersByQuestionId,
             });
         } catch {
-
+            // Ignore errors on quit
         } finally {
             setSubmitting(false);
             onQuit();

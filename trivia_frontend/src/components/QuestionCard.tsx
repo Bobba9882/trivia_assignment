@@ -1,3 +1,6 @@
+/**
+ * QuestionCard - Displays a single question with its answer options.
+ */
 import type { QuestionDto } from '../types/trivia';
 import { AnswerGrid } from './AnswerGrid';
 

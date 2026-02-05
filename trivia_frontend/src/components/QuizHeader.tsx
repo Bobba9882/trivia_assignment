@@ -1,3 +1,7 @@
+/**
+ * QuizHeader - Displays quiz progress, metadata, and quit button.
+ */
+
 type Props = {
     category: string;
     difficulty: string;

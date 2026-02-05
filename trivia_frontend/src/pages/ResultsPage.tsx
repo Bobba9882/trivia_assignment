@@ -1,3 +1,7 @@
+/**
+ * ResultsPage - Displays quiz results with score summary and
+ * detailed breakdown of correct/incorrect answers.
+ */
 import type { CheckAnswersResponseDto, QuizState } from '../types/trivia';
 import { AppLayout } from '../components/AppLayout';
 import { ResultsList } from '../components/ResultsList';

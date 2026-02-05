@@ -1,3 +1,8 @@
+/**
+ * AnswerButton - Styled button for quiz answer selection.
+ * Visually indicates selected state with enhanced borders.
+ */
+
 type Variant = 'primary' | 'success' | 'warning' | 'danger';
 
 type Props = {
