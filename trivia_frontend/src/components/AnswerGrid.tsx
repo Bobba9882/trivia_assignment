@@ -1,8 +1,7 @@
-// src/components/AnswerGrid.tsx
 import { AnswerButton } from './AnswerButton';
 
 type Props = {
-    type: string; // 'boolean' | 'multiple' (backend sends string)
+    type: string;
     answers: string[];
     selectedAnswer?: string;
     onSelect: (answer: string) => void;
@@ -15,13 +14,13 @@ export function AnswerGrid({ type, answers, selectedAnswer, onSelect }: Props) {
 
     return (
         <div className={`row ${cols} g-3`}>
-            {answers.map((a, i) => (
-                <div className="col" key={`${a}-${i}`}>
+            {answers.map((answer, answerIndex) => (
+                <div className="col" key={`${answer}-${answerIndex}`}>
                     <AnswerButton
-                        label={a}
-                        variant={kahootVariantCycle[i % kahootVariantCycle.length]}
-                        selected={selectedAnswer === a}
-                        onClick={() => onSelect(a)}
+                        label={answer}
+                        variant={kahootVariantCycle[answerIndex % kahootVariantCycle.length]}
+                        selected={selectedAnswer === answer}
+                        onClick={() => onSelect(answer)}
                     />
                 </div>
             ))}

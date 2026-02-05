@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useEffect, useMemo, useState } from 'react';
 import type {
     CheckAnswersResponseDto,
@@ -21,7 +20,6 @@ export default function App() {
 
     const initialParams = useMemo<GetQuestionsParams>(() => ({ amount: 10 }), []);
 
-    // Apply Bootstrap theme
     useEffect(() => {
         document.documentElement.setAttribute(
             'data-bs-theme',
@@ -31,7 +29,6 @@ export default function App() {
 
     return (
         <>
-            {/* Theme toggle */}
             <div className="position-fixed top-0 end-0 p-3" style={{ zIndex: 2000 }}>
                 <div className="form-check form-switch">
                     <input
@@ -39,7 +36,7 @@ export default function App() {
                         type="checkbox"
                         id="themeSwitch"
                         checked={darkMode}
-                        onChange={() => setDarkMode((v) => !v)}
+                        onChange={() => setDarkMode((previousValue) => !previousValue)}
                     />
                     <label className="form-check-label" htmlFor="themeSwitch">
                         Dark mode
@@ -47,14 +44,13 @@ export default function App() {
                 </div>
             </div>
 
-            {/* Views */}
             {view === 'start' && (
                 <StartPage
                     initialParams={initialParams}
-                    onStart={(q: QuestionsResponseDto) => {
+                    onStart={(questionsResponse: QuestionsResponseDto) => {
                         setQuiz({
-                            sessionId: q.sessionId,
-                            questions: q.questions,
+                            sessionId: questionsResponse.sessionId,
+                            questions: questionsResponse.questions,
                             answersByQuestionId: {},
                         });
                         setResult(null);
@@ -67,8 +63,8 @@ export default function App() {
                 <QuizPage
                     quiz={quiz}
                     onQuizChange={setQuiz}
-                    onFinish={(r) => {
-                        setResult(r);
+                    onFinish={(checkResult) => {
+                        setResult(checkResult);
                         setView('results');
                     }}
                     onQuit={() => {

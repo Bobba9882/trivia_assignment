@@ -1,4 +1,3 @@
-// src/pages/QuizPage.tsx
 import { useMemo, useState } from 'react';
 import type { CheckAnswersResponseDto, QuizState } from '../types/trivia';
 import { checkAnswers } from '../services/triviaService';
@@ -52,24 +51,24 @@ export function QuizPage({ quiz, onQuizChange, onFinish, onQuit }: Props) {
     }
 
     function next() {
-        if (index < total - 1) setIndex((i) => i + 1);
+        if (index < total - 1) setIndex((previousIndex) => previousIndex + 1);
     }
 
     function prev() {
-        if (index > 0) setIndex((i) => i - 1);
+        if (index > 0) setIndex((previousIndex) => previousIndex - 1);
     }
 
     async function finish() {
         setError(null);
         setSubmitting(true);
         try {
-            const res = await checkAnswers({
+            const checkResult = await checkAnswers({
                 sessionId: quiz.sessionId,
                 answersByQuestionId: quiz.answersByQuestionId,
             });
-            onFinish(res);
-        } catch (e: any) {
-            setError(e?.message ?? 'Failed to submit answers');
+            onFinish(checkResult);
+        } catch (error: any) {
+            setError(error?.message ?? 'Failed to submit answers');
         } finally {
             setSubmitting(false);
         }
@@ -84,8 +83,8 @@ export function QuizPage({ quiz, onQuizChange, onFinish, onQuit }: Props) {
 
         // Build a map containing ALL questionIds so backend evicts
         const answersByQuestionId: Record<string, string> = {};
-        for (const q of quiz.questions) {
-            answersByQuestionId[q.questionId] = quiz.answersByQuestionId[q.questionId] ?? '';
+        for (const question of quiz.questions) {
+            answersByQuestionId[question.questionId] = quiz.answersByQuestionId[question.questionId] ?? '';
         }
 
         try {
@@ -94,7 +93,7 @@ export function QuizPage({ quiz, onQuizChange, onFinish, onQuit }: Props) {
                 answersByQuestionId,
             });
         } catch {
-            // Even if eviction call fails, still quit locally
+
         } finally {
             setSubmitting(false);
             onQuit();

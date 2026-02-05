@@ -1,4 +1,3 @@
-// src/services/triviaService.ts
 import type {
     CheckAnswersRequestDto,
     CheckAnswersResponseDto,
@@ -33,17 +32,17 @@ function buildQuestionsUrl(params?: GetQuestionsParams): string {
 }
 
 export async function getQuestions(params?: GetQuestionsParams): Promise<QuestionsResponseDto> {
-    const res = await fetch(buildQuestionsUrl(params), { method: 'GET', headers: { Accept: 'application/json' } });
-    return (await parseOrThrow(res)) as QuestionsResponseDto;
+    const response = await fetch(buildQuestionsUrl(params), { method: 'GET', headers: { Accept: 'application/json' } });
+    return (await parseOrThrow(response)) as QuestionsResponseDto;
 }
 
 export async function checkAnswers(payload: CheckAnswersRequestDto): Promise<CheckAnswersResponseDto> {
-    const res = await fetch(`${BASE_URL}/api/trivia/checkanswers`, {
+    const response = await fetch(`${BASE_URL}/api/trivia/checkanswers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(payload),
     });
-    return (await parseOrThrow(res)) as CheckAnswersResponseDto;
+    return (await parseOrThrow(response)) as CheckAnswersResponseDto;
 }
 
 export const triviaService = { getQuestions, checkAnswers };

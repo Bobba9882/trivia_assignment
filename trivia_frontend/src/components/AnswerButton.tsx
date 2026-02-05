@@ -1,4 +1,3 @@
-// src/components/AnswerButton.tsx
 type Variant = 'primary' | 'success' | 'warning' | 'danger';
 
 type Props = {

@@ -1,4 +1,3 @@
-// src/pages/ResultsPage.tsx
 import type { CheckAnswersResponseDto, QuizState } from '../types/trivia';
 import { AppLayout } from '../components/AppLayout';
 import { ResultsList } from '../components/ResultsList';

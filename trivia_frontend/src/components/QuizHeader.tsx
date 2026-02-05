@@ -1,4 +1,3 @@
-// src/components/QuizHeader.tsx
 type Props = {
     category: string;
     difficulty: string;

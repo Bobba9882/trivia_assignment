@@ -1,4 +1,3 @@
-// src/components/QuestionCard.tsx
 import type { QuestionDto } from '../types/trivia';
 import { AnswerGrid } from './AnswerGrid';
 

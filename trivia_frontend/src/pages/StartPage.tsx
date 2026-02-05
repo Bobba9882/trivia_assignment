@@ -1,4 +1,3 @@
-// src/pages/StartPage.tsx
 import {useState} from 'react';
 import type {GetQuestionsParams, QuestionsResponseDto} from '../types/trivia';
 import {getQuestions} from '../services/triviaService';
@@ -21,10 +20,10 @@ export function StartPage({initialParams, onStart}: Props) {
         setError(null);
         setLoading(true);
         try {
-            const q = await getQuestions(params);
-            onStart(q);
-        } catch (e: any) {
-            setError(e?.message ?? 'Failed to start quiz');
+            const questionsResponse = await getQuestions(params);
+            onStart(questionsResponse);
+        } catch (error: any) {
+            setError(error?.message ?? 'Failed to start quiz');
         } finally {
             setLoading(false);
         }
@@ -33,11 +32,11 @@ export function StartPage({initialParams, onStart}: Props) {
     return (
         <AppLayout>
             {loading && <LoadingOverlay label="Loading questions..."/>}
-            <div className="card shadow-sm mx-auto" style={{ width: '100%' }}>
+            <div className="card shadow-sm mx-auto" style={{width: '100%'}}>
                 <div className="card-body p-4">
                     <h1 className="h3 mb-2">Trivia</h1>
-                    <p className="text-body-secondary mb-4">Kahoot-style quick quiz. Select your settings and
-                        start.</p>
+                    <p className="text-body-secondary mb-4">Trivia time! Select your settings and
+                        start!</p>
 
                     {error && <ErrorAlert message={error}/>}
 
@@ -50,7 +49,10 @@ export function StartPage({initialParams, onStart}: Props) {
                                 min={1}
                                 max={50}
                                 value={params.amount ?? 10}
-                                onChange={(e) => setParams((p) => ({...p, amount: Number(e.target.value)}))}
+                                onChange={(e) => setParams((previousParams) => ({
+                                    ...previousParams,
+                                    amount: Number(e.target.value)
+                                }))}
                             />
                         </div>
 
@@ -59,8 +61,8 @@ export function StartPage({initialParams, onStart}: Props) {
                             <select
                                 className="form-select"
                                 value={params.difficulty ?? ''}
-                                onChange={(e) => setParams((p) => ({
-                                    ...p,
+                                onChange={(e) => setParams((previousParams) => ({
+                                    ...previousParams,
                                     difficulty: e.target.value || undefined
                                 }))}
                             >
@@ -76,7 +78,10 @@ export function StartPage({initialParams, onStart}: Props) {
                             <select
                                 className="form-select"
                                 value={params.type ?? ''}
-                                onChange={(e) => setParams((p) => ({...p, type: e.target.value || undefined}))}
+                                onChange={(e) => setParams((previousParams) => ({
+                                    ...previousParams,
+                                    type: e.target.value || undefined
+                                }))}
                             >
                                 <option value="">Any</option>
                                 <option value="multiple">Multiple choice</option>
@@ -92,16 +97,16 @@ export function StartPage({initialParams, onStart}: Props) {
                                     className="form-select"
                                     value={params.category ?? ''}
                                     onChange={(e) =>
-                                        setParams((p) => ({
-                                            ...p,
+                                        setParams((previousParams) => ({
+                                            ...previousParams,
                                             category: e.target.value ? Number(e.target.value) : undefined,
                                         }))
                                     }
                                 >
                                     <option value="">Any category</option>
-                                    {TRIVIA_CATEGORIES.map((c) => (
-                                        <option key={c.id} value={c.id}>
-                                            {c.name}
+                                    {TRIVIA_CATEGORIES.map((category) => (
+                                        <option key={category.id} value={category.id}>
+                                            {category.name}
                                         </option>
                                     ))}
                                 </select>

@@ -1,4 +1,3 @@
-// src/components/LoadingOverlay.tsx
 export function LoadingOverlay({ label }: { label?: string }) {
     return (
         <div

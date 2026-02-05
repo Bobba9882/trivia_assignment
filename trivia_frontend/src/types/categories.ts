@@ -1,4 +1,3 @@
-// src/types/categories.ts
 export interface TriviaCategory {
     id: number;
     name: string;
