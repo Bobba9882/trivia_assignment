@@ -4,6 +4,7 @@ import com.example.trivia_backend.DTOs.api.CheckAnswersRequestDto;
 import com.example.trivia_backend.DTOs.api.CheckAnswersResponseDto;
 import com.example.trivia_backend.DTOs.api.QuestionsResponseDto;
 import com.example.trivia_backend.service.TriviaService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * REST controller for trivia quiz operations.
  * Handles question retrieval and answer validation.
  */
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "${cors.allowed.origins}")
 @RestController
 @RequestMapping("/api/trivia")
 public class TriviaController {

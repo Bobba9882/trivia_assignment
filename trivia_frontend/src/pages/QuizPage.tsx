@@ -108,7 +108,7 @@ export function QuizPage({ quiz, onQuizChange, onFinish, onQuit }: Props) {
     const allAnswered = answeredCount >= total;
 
     return (
-        <AppLayout fullHeight>
+        <AppLayout>
             {submitting && <LoadingOverlay label="Submitting..." />}
 
             <div className="d-flex flex-column gap-3">

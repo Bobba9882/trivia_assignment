@@ -6,6 +6,7 @@ import com.example.trivia_backend.DTOs.opentdb.OpenTdbQuestionDto;
 import com.example.trivia_backend.DTOs.opentdb.OpenTdbResponseDto;
 import com.example.trivia_backend.service.OpenTdbService;
 import com.example.trivia_backend.service.TriviaService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
@@ -27,11 +28,14 @@ public class TriviaServiceImpl implements TriviaService {
 
     private final OpenTdbService openTdbService;
     private final Cache triviaSessionsCache;
+    private final int cacheSessionTtlMinutes;
 
     public TriviaServiceImpl(OpenTdbService openTdbService,
-                             CacheManager cacheManager) {
+                             CacheManager cacheManager,
+                             @Value("${cache.session.ttl.minutes}") int cacheSessionTtlMinutes) {
         this.openTdbService = openTdbService;
         this.triviaSessionsCache = cacheManager.getCache(CACHE_NAME);
+        this.cacheSessionTtlMinutes = cacheSessionTtlMinutes;
     }
 
     @Override
@@ -79,7 +83,7 @@ public class TriviaServiceImpl implements TriviaService {
                 .sessionId(sessionId)
                 .correctAnswerByQuestionId(correctAnswerByQuestionId)
                 .createdAt(now)
-                .expiresAt(now.plusSeconds(20 * 60)) //20 minutes
+                .expiresAt(now.plusSeconds(cacheSessionTtlMinutes * 60))
                 .build();
 
         //caches correct answers by sessionId

@@ -1,0 +1,31 @@
+services:
+  trivia-backend:
+    build: ./trivia_backend
+    container_name: trivia-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_PORT=8080
+      - CORS_ALLOWED_ORIGINS=http://localhost:3000
+      - CACHE_SESSION_TTL_MINUTES=20
+    restart: unless-stopped
+    networks:
+      - trivia-network
+
+  trivia-frontend:
+    build:
+      context: ./trivia_frontend
+      args:
+        VITE_API_BASE_URL: http://localhost:8080
+    container_name: trivia-frontend
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    depends_on:
+      - trivia-backend
+    networks:
+      - trivia-network
+
+networks:
+  trivia-network:
+    driver: bridge
