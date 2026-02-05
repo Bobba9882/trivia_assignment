@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Question data from the Open Trivia Database API.
+ */
 @Data
 @Builder
 @NoArgsConstructor

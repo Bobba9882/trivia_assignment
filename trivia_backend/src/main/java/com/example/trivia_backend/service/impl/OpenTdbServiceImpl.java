@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
+/**
+ * Implementation of OpenTdbService that fetches questions from the Open Trivia Database API.
+ * Questions are returned with URL encoding (url3986) to handle special characters.
+ */
 @Service
 public class OpenTdbServiceImpl implements OpenTdbService {
 

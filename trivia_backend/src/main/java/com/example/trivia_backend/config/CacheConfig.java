@@ -9,6 +9,10 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.Duration;
 
+/**
+ * Configuration for caching quiz sessions using Caffeine.
+ * Sessions expire after 20 minutes of inactivity.
+ */
 @Configuration
 @EnableCaching
 public class CacheConfig {

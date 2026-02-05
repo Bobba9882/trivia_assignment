@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.Map;
 
+/**
+ * Request to validate answers for a quiz session.
+ */
 @Data
 @Builder
 @NoArgsConstructor

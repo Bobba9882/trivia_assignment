@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Result of validating a single answer in a quiz session.
+ */
 @Data
 @Builder
 @NoArgsConstructor

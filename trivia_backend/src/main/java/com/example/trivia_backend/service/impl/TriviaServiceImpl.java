@@ -10,12 +10,16 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
 
-import java.io.Console;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.*;
 
+/**
+ * Implementation of TriviaService that manages quiz sessions.
+ * Fetches questions from Open Trivia DB, creates sessions with unique IDs,
+ * and validates answers against cached session data.
+ */
 @Service
 public class TriviaServiceImpl implements TriviaService {
 
@@ -126,7 +130,7 @@ public class TriviaServiceImpl implements TriviaService {
 
         int submittedCount = request.getAnswersByQuestionId().size();
 
-        //remove cache if all questions answered
+        // Clean up session cache once all questions are answered
         if (submittedCount >= session.getCorrectAnswerByQuestionId().size()){
             System.out.println("evicting cache for sessionId: " + request.getSessionId());
             triviaSessionsCache.evict(request.getSessionId());

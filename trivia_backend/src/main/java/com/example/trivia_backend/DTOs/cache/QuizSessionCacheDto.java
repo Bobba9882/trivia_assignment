@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import java.time.Instant;
 import java.util.Map;
 
+/**
+ * Cached quiz session data containing correct answers for validation.
+ */
 @Data
 @Builder
 @NoArgsConstructor

@@ -7,6 +7,10 @@ import com.example.trivia_backend.service.TriviaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * REST controller for trivia quiz operations.
+ * Handles question retrieval and answer validation.
+ */
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/trivia")

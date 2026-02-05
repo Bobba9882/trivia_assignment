@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Response containing a list of trivia questions and a session identifier.
+ */
 @Data
 @Builder
 @NoArgsConstructor

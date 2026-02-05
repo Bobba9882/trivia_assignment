@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Represents a trivia question with shuffled answer choices.
+ */
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,5 +20,5 @@ public class QuestionDto {
     private String difficulty;
     private String category;
     private String question;
-    private List<String> answers; // shuffled answers (includes correct + incorrect)
+    private List<String> answers; // Shuffled to randomize display order
 }
